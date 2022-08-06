@@ -5,6 +5,13 @@ const MyContext = React.createContext();
 class MyProvider extends Component {
   state = {
     stage: 1,
+    players: [],
+  };
+
+  addPlayerHandler = (name) => {
+    this.setState((prevState) => ({
+      players: [...prevState.players, name],
+    }));
   };
 
   render() {
@@ -13,6 +20,7 @@ class MyProvider extends Component {
         <MyContext.Provider
           value={{
             state: this.state,
+            addPlayer: this.addPlayerHandler,
           }}
         >
           {this.props.children}
